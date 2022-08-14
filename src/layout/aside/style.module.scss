@@ -1,0 +1,9 @@
+.aside {
+  resize: horizontal;
+  cursor: col-resize;
+  // max-width: 95%;
+  // min-width: 5%;
+  border-right: 1px solid black;
+
+  overflow: hidden;
+}
