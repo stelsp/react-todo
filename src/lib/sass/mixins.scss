@@ -1,0 +1,77 @@
+@mixin for-tablet-up {
+  @media (min-width: 30em) {
+    @content;
+  }
+}
+
+@mixin for-desktop-up {
+  @media (min-width: 50em) {
+    @content;
+  }
+}
+
+@mixin color($clr: transparent, $bg: transparent) {
+  color: $clr;
+  background-color: $bg;
+}
+
+@mixin font($ff: var(--ff-primary), $fw: 400, $fs: 1rem) {
+  font-family: $ff;
+  font-weight: $fw;
+  font-size: $fs;
+}
+
+@mixin flex($justify: start, $items: start, $gap: 0, $dir: row) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $items;
+  flex-direction: $dir;
+  gap: $gap;
+}
+
+@mixin button($br: 0, $px: 0, $py: 0, $clr: #fff, $bg: #000) {
+  border-radius: $br;
+  padding-block: $px;
+  padding-inline: $py;
+
+  border: none;
+  outline: none;
+
+  cursor: pointer;
+  transition: 0.3s;
+
+  color: $clr;
+  background-color: $bg;
+
+  &:hover,
+  &:focus-visible {
+    transform: scale(1.05);
+    color: $bg;
+    background-color: $clr;
+  }
+  &:active {
+    transform: scale(1.1);
+  }
+}
+
+@mixin link() {
+  text-decoration: none;
+
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover,
+  &:focus-visible {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+  &:active {
+    transform: scale(1.1);
+  }
+}
+
+@mixin container($width: 73rem, $padding: 1rem) {
+  width: min($width, 100% - ($padding * 2));
+  margin-inline: auto;
+  @content;
+}
