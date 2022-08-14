@@ -1,6 +1,8 @@
 @import '../../lib/sass/mixins.scss';
 
 .app {
-  @include flex($justify: space-between, $items: center, $gap: 1rem, $dir: row);
+  @include container();
+  @include flex($justify: start, $items: center, $gap: 1rem, $dir: row);
   border: 1px solid black;
+  overflow: hidden;
 }
