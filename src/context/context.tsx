@@ -2,6 +2,11 @@ import React, { createContext, FC, useContext, useState } from 'react';
 
 interface IData {
   test?: string;
+  setTest?: React.Dispatch<React.SetStateAction<string>>;
+}
+
+interface IDataProvider {
+  children: React.ReactNode;
 }
 
 const Data = createContext<IData>({});
@@ -10,14 +15,10 @@ export const useData = () => {
   return useContext(Data);
 };
 
-interface IDataProvider {
-  children: React.ReactNode;
-}
-
 const DataProvider: FC<IDataProvider> = ({ children }) => {
-  const [data] = useState({ test: 'Hello' });
+  const [test, setTest] = useState('test');
 
-  return <Data.Provider value={data}>{children}</Data.Provider>;
+  return <Data.Provider value={{ test, setTest }}>{children}</Data.Provider>;
 };
 
 export default DataProvider;
