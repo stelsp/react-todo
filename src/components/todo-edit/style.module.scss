@@ -1,3 +1,5 @@
+@import '../../lib/sass/mixins.scss';
+
 .todoEdit {
   flex-grow: 1;
   &__divider {
@@ -6,8 +8,10 @@
   }
 
   &__title {
+    @include flex($justify: space-between);
   }
 
   &__body {
+    @include flex($justify: space-between);
   }
 }

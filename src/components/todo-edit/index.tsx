@@ -3,42 +3,46 @@ import { useData } from '../../context/context';
 
 import style from './style.module.scss';
 
-const TodoTitleInput: FC = () => {
-  return <input type="text" placeholder="title input" />;
-};
-const TodoTitle: FC<{ title: string }> = ({ title }) => {
-  return <h2>{title}</h2>;
-};
-
-const TodoBodyInput: FC = () => {
-  return <textarea placeholder="body input" />;
-};
-const TodoBody: FC<{ body: string }> = ({ body }) => {
-  return <p>{body}</p>;
-};
-
-const TodoEdit: FC = () => {
-  const [EditTitle, setEditTitle] = useState(false);
-  const [EditBody, setEditBody] = useState(false);
-
+const TodoTitle: FC = () => {
   const { currentTodo } = useData();
+
+  const [EditTitle, setEditTitle] = useState(false);
 
   if (!currentTodo) return null;
 
   return (
+    <>
+      {EditTitle && <input type="text" placeholder="title input" />}
+      {!EditTitle && <h2 onClick={() => setEditTitle(!EditTitle)}>{currentTodo.title}</h2>}
+    </>
+  );
+};
+
+const TodoBody: FC = () => {
+  const { currentTodo } = useData();
+  const [EditBody, setEditBody] = useState(false);
+
+  if (!currentTodo) return null;
+
+  return (
+    <>
+      {EditBody && <textarea placeholder="body input" />}
+      {!EditBody && <p onClick={() => setEditBody(!EditBody)}>{currentTodo.body}</p>}
+    </>
+  );
+};
+
+const TodoEdit: FC = () => {
+  return (
     <div className={style.todoEdit}>
-      <div className={style.title}>
-        <button onClick={() => setEditTitle(!EditTitle)}>ET</button>
-        {EditTitle && <TodoTitleInput />}
-        {!EditTitle && <TodoTitle title={currentTodo.title} />}
+      <div className={style.todoEdit__title}>
+        <TodoTitle />
       </div>
 
       <div className={style.todoEdit__divider} />
 
-      <div className={style.body}>
-        <button onClick={() => setEditBody(!EditBody)}>EB</button>
-        {EditBody && <TodoBodyInput />}
-        {!EditBody && <TodoBody body={currentTodo.body} />}
+      <div className={style.todoEdit__body}>
+        <TodoBody />
       </div>
     </div>
   );
