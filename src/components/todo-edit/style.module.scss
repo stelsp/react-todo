@@ -1,0 +1,17 @@
+@import '../../lib/sass/mixins.scss';
+
+.todoEdit {
+  flex-grow: 1;
+  &__divider {
+    border-bottom: 2px solid black;
+    margin-block: 0.5rem;
+  }
+
+  &__title {
+    @include flex($justify: space-between);
+  }
+
+  &__body {
+    @include flex($justify: space-between);
+  }
+}
