@@ -1,9 +1,14 @@
 .aside {
   resize: horizontal;
-  cursor: col-resize;
-  // max-width: 95%;
-  // min-width: 5%;
+  // cursor: col-resize;
+  padding: 0.5rem;
+
   border-right: 1px solid black;
 
   overflow: hidden;
+
+  &__divider {
+    border-bottom: 2px solid black;
+    margin-block: 0.5rem;
+  }
 }

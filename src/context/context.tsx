@@ -8,10 +8,12 @@ interface ITodo {
 interface IData {
   todos?: ITodo[];
   setTodos?: React.Dispatch<React.SetStateAction<ITodo[]>>;
-  addTodo?: (title: string, body: string, id: number) => void;
+  addTodo?: () => void;
   deleteTodo?: (id: number) => void;
+  currentTodo?: ITodo;
+  setCurrentTodo?: React.Dispatch<React.SetStateAction<ITodo>>;
+  setTodo?: (id: number) => void;
 }
-
 interface IDataProvider {
   children: React.ReactNode;
 }
@@ -23,22 +25,34 @@ export const useData = () => {
 };
 
 const DataProvider: FC<IDataProvider> = ({ children }) => {
-  const [todos, setTodos] = useState<ITodo[]>([]);
-  const createTodo = (title: string, body: string) => {
+  const [todos, setTodos] = useState<ITodo[]>([{ title: 'title112', body: 'body112', id: 21 }]);
+  const [currentTodo, setCurrentTodo] = useState<ITodo>();
+
+  const createTodo = () => {
     return {
-      title,
-      body,
+      title: 'test',
+      body: 'test',
       id: Date.now()
     };
   };
-  const addTodo = (title: string, body: string) => {
-    setTodos([createTodo(title, body), ...todos]);
+
+  const addTodo = () => {
+    setTodos([createTodo(), ...todos]);
   };
+
   const deleteTodo = (id: number) => {
     setTodos(todos.filter((el) => el.id !== id));
   };
 
-  return <Data.Provider value={{ todos, addTodo, deleteTodo }}>{children}</Data.Provider>;
+  const setTodo = (id: number) => {
+    setCurrentTodo(todos.find((el) => el.id === id));
+  };
+
+  return (
+    <Data.Provider value={{ todos, addTodo, deleteTodo, currentTodo, setTodo }}>
+      {children}
+    </Data.Provider>
+  );
 };
 
 export default DataProvider;

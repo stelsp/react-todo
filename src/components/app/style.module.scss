@@ -2,7 +2,7 @@
 
 .app {
   @include container();
-  @include flex($justify: start, $items: center, $gap: 0.5rem);
+  @include flex($items: 0);
 
   margin-top: 1rem;
   border: 1px solid black;
