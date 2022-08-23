@@ -28,6 +28,11 @@ const DataProvider: FC<IDataProvider> = ({ children }) => {
   const [todos, setTodos] = useState<ITodo[]>([{ title: 'title112', body: 'body112', id: 21 }]);
   const [currentTodo, setCurrentTodo] = useState<ITodo>();
 
+  const setTodo = (id: number) => {
+    setCurrentTodo(todos.find((el) => el.id === id));
+    console.log(currentTodo);
+  };
+
   const createTodo = () => {
     return {
       title: 'test',
@@ -38,14 +43,11 @@ const DataProvider: FC<IDataProvider> = ({ children }) => {
 
   const addTodo = () => {
     setTodos([createTodo(), ...todos]);
+    setTodo(createTodo().id);
   };
 
   const deleteTodo = (id: number) => {
     setTodos(todos.filter((el) => el.id !== id));
-  };
-
-  const setTodo = (id: number) => {
-    setCurrentTodo(todos.find((el) => el.id === id));
   };
 
   return (

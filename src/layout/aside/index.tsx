@@ -4,21 +4,22 @@ import { useData } from '../../context/context';
 
 import style from './style.module.scss';
 
-const AddTodoBtn: FC = () => {
+const AddTodo: FC = () => {
   const { addTodo } = useData();
 
   if (!addTodo) return null;
 
-  return <button onClick={() => addTodo()}>ADD</button>;
+  return (
+    <header className={style.aside__header}>
+      <button onClick={() => addTodo()}>new</button>
+    </header>
+  );
 };
 
 const Aside: FC = () => {
   return (
     <aside className={style.aside}>
-      <AddTodoBtn />
-
-      <div className={style.aside__divider} />
-
+      <AddTodo />
       <TodoList />
     </aside>
   );

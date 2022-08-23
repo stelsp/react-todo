@@ -3,7 +3,7 @@ import { useData } from '../../context/context';
 
 import style from './style.module.scss';
 
-const TodoTitle: FC = () => {
+const TodoHeader: FC = () => {
   const { currentTodo } = useData();
 
   const [EditTitle, setEditTitle] = useState(false);
@@ -11,10 +11,10 @@ const TodoTitle: FC = () => {
   if (!currentTodo) return null;
 
   return (
-    <>
+    <header className={style.todoEdit__header}>
       {EditTitle && <input type="text" placeholder="title input" />}
       {!EditTitle && <h2 onClick={() => setEditTitle(!EditTitle)}>{currentTodo.title}</h2>}
-    </>
+    </header>
   );
 };
 
@@ -25,25 +25,18 @@ const TodoBody: FC = () => {
   if (!currentTodo) return null;
 
   return (
-    <>
+    <div className={style.todoEdit__body}>
       {EditBody && <textarea placeholder="body input" />}
       {!EditBody && <p onClick={() => setEditBody(!EditBody)}>{currentTodo.body}</p>}
-    </>
+    </div>
   );
 };
 
 const TodoEdit: FC = () => {
   return (
     <div className={style.todoEdit}>
-      <div className={style.todoEdit__title}>
-        <TodoTitle />
-      </div>
-
-      <div className={style.todoEdit__divider} />
-
-      <div className={style.todoEdit__body}>
-        <TodoBody />
-      </div>
+      <TodoHeader />
+      <TodoBody />
     </div>
   );
 };
