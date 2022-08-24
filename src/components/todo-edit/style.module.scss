@@ -2,19 +2,41 @@
 
 .todoEdit {
   flex-grow: 1;
+
   &__divider {
     border-bottom: 1px solid black;
     margin-block: 0.5rem;
   }
 
   &__header {
-    min-height: 30px;
+    min-height: 2rem;
     @include flex($justify: space-between);
     border-bottom: 1px solid black;
     margin-bottom: 0.5rem;
+
+    input {
+      border: none;
+      outline: none;
+      padding: 2px;
+      border: 1px dashed #000;
+      width: 100%;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
   &__body {
     @include flex($justify: space-between);
+
+    textarea {
+      outline: none;
+      resize: vertical;
+      padding: 2px;
+      border: 1px dashed #000;
+      width: 100%;
+      min-height: 100vmin;
+    }
   }
 }

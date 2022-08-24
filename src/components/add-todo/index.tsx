@@ -10,7 +10,12 @@ const AddTodo: FC = () => {
 
   return (
     <header className={style.addTodo__header}>
-      <button className={style.addTodo__button} onClick={() => addTodo()}>
+      <button
+        className={style.addTodo__button}
+        onClick={() => {
+          addTodo();
+        }}
+      >
         new
       </button>
     </header>

@@ -1,6 +1,7 @@
 .aside {
   resize: horizontal;
-  padding: 0.5rem;
-  border-right: 1px solid black;
   overflow: hidden;
+  padding: 0.5rem;
+  min-width: 4.5rem;
+  border-right: 1px solid black;
 }

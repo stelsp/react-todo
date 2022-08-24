@@ -5,29 +5,35 @@ import style from './style.module.scss';
 
 const TodoHeader: FC = () => {
   const { currentTodo } = useData();
-
-  const [EditTitle, setEditTitle] = useState(false);
+  const [state, setState] = useState('');
 
   if (!currentTodo) return null;
 
   return (
     <header className={style.todoEdit__header}>
-      {EditTitle && <input type="text" placeholder="title input" />}
-      {!EditTitle && <h2 onClick={() => setEditTitle(!EditTitle)}>{currentTodo.title}</h2>}
+      <input
+        type="text"
+        placeholder="введите название"
+        value={state}
+        onChange={(e) => setState(e.target.value)}
+      />
     </header>
   );
 };
 
 const TodoBody: FC = () => {
   const { currentTodo } = useData();
-  const [EditBody, setEditBody] = useState(false);
+  const [state, setState] = useState('');
 
   if (!currentTodo) return null;
 
   return (
     <div className={style.todoEdit__body}>
-      {EditBody && <textarea placeholder="body input" />}
-      {!EditBody && <p onClick={() => setEditBody(!EditBody)}>{currentTodo.body}</p>}
+      <textarea
+        placeholder="а тут текст"
+        value={state}
+        onChange={(e) => setState(e.target.value)}
+      />
     </div>
   );
 };
