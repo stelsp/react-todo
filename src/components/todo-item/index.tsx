@@ -9,14 +9,25 @@ interface ITodoItem {
 }
 
 const TodoItem: FC<ITodoItem> = ({ el }) => {
-  const { handleDeleteClick, handleSetCurrentTodo, currentTodo } = useData();
+  const { handleDeleteClick, handleSetCurrentTodo, currentTodo } = useData()!;
 
   return (
-    <li className={style.todoItem}>
+    <li
+      className={style.todoItem}
+      style={currentTodo.id === el.id ? { opacity: '0.5' } : { backgroundColor: '' }}
+    >
       <span onClick={() => handleDeleteClick(el.id)}>X</span>
       <h2
         onClick={() => handleSetCurrentTodo(el.id)}
-        style={currentTodo.id === el.id ? { color: 'green' } : { color: 'black' }}
+        style={
+          el.status === 'waiting'
+            ? { color: 'black' }
+            : el.status === 'inprocess'
+            ? { color: '#364fc7' }
+            : el.status === 'done'
+            ? { color: '#5c940d' }
+            : { color: 'black' }
+        }
       >
         {el.title}
         <span>{el.body}</span>

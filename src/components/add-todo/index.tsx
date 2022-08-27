@@ -4,7 +4,7 @@ import { useData } from '../../context/context';
 import style from './style.module.scss';
 
 const AddTodo: FC = () => {
-  const { handleAddFormSubmit } = useData();
+  const { handleAddFormSubmit } = useData()!;
 
   return (
     <form className={style.addTodo__header} onSubmit={handleAddFormSubmit}>

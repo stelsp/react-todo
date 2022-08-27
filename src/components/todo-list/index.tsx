@@ -5,12 +5,11 @@ import TodoItem from '../todo-item';
 import style from './style.module.scss';
 
 const TodoList: FC = () => {
-  const { todos } = useData();
-  console.log(todos);
+  const { todos } = useData()!;
 
   return (
     <ul className={style.todoList}>
-      {todos.map((el: any) => (
+      {todos.map((el) => (
         <TodoItem el={el} key={el.id} />
       ))}
     </ul>

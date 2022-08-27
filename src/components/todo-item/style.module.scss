@@ -9,14 +9,10 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    @include link;
-    &:hover {
-      border-bottom: 1px solid #000;
-    }
+    // @include link;
   }
   span {
-    @include link;
-    color: red;
+    // @include link;
     font-size: 10px;
   }
 
