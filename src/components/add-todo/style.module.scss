@@ -1,0 +1,12 @@
+@import '../../lib/sass/mixins.scss';
+
+.addTodo {
+  font-size: var(--fs-300);
+
+  &__button {
+    display: block;
+    @include button();
+    width: 100%;
+    margin: 0 auto;
+  }
+}

@@ -1,4 +1,43 @@
+@import '../../lib/sass/mixins.scss';
+
 .todoItem {
-  text-overflow: ellipsis;
-  cursor: pointer;
+  @include flex($items: center, $gap: 0.5rem);
+  width: 100%;
+
+  &:hover {
+    border-bottom: 1px solid black;
+  }
+
+  &__text {
+    @include flex($gap: 0.5rem, $dir: column);
+    @include link;
+    width: 100%;
+
+    font-size: var(--fs-400);
+    overflow: hidden;
+
+    h3 {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    p {
+      font-size: var(--fs-300);
+      padding-left: 10px;
+      max-width: 30ch;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &_waiting {
+    color: #000000;
+  }
+  &_inprocess {
+    color: #364fc7;
+  }
+  &_done {
+    color: #5c940d;
+  }
 }

@@ -2,10 +2,11 @@
 
 .app {
   @include container();
-  @include flex($items: 0);
+  @include flex();
 
   margin-top: 1rem;
   border: 1px solid black;
 
-  min-height: 50vh;
+  min-height: 400px;
+  min-width: 15rem;
 }

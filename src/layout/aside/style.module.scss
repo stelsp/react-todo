@@ -1,12 +1,10 @@
+@import '../../lib/sass/mixins.scss';
 .aside {
-  resize: horizontal;
-  padding: 0.5rem;
-  border-right: 1px solid black;
-  overflow: hidden;
+  @include flex($gap: 1rem, $dir: column);
 
-  &__header {
-    min-height: 30px;
-    border-bottom: 2px solid black;
-    margin-bottom: 0.5rem;
-  }
+  resize: horizontal;
+  overflow: hidden;
+  padding: 0.5rem;
+  min-width: 3rem;
+  border-right: 1px solid black;
 }

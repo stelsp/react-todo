@@ -1,5 +1,5 @@
-import Aside from '../../layout/aside';
-import Main from '../../layout/main';
+import Aside from '../aside';
+import Main from '../main';
 
 import style from './style.module.scss';
 

@@ -1,40 +1,74 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { useData } from '../../context/context';
 
 import style from './style.module.scss';
 
-const TodoHeader: FC = () => {
-  const { currentTodo } = useData();
+const TodoStatus: FC = () => {
+  const { handleStatusChange, handleEditSubmit } = useData()!;
 
-  const [EditTitle, setEditTitle] = useState(false);
+  return (
+    <form className={style.todoEdit__status} onSubmit={handleEditSubmit} onBlur={handleEditSubmit}>
+      <button
+        className={style.todoEdit__status_waiting}
+        onClick={() => handleStatusChange('waiting')}
+      >
+        waiting
+      </button>
+      <button
+        className={style.todoEdit__status_inprocess}
+        onClick={() => handleStatusChange('inprocess')}
+      >
+        process
+      </button>
+      <button className={style.todoEdit__status_done} onClick={() => handleStatusChange('done')}>
+        done
+      </button>
+    </form>
+  );
+};
+
+const TodoHeader: FC = () => {
+  const { handleEditTitleChange, handleEditSubmit, currentTodo } = useData()!;
 
   if (!currentTodo) return null;
 
   return (
-    <header className={style.todoEdit__header}>
-      {EditTitle && <input type="text" placeholder="title input" />}
-      {!EditTitle && <h2 onClick={() => setEditTitle(!EditTitle)}>{currentTodo.title}</h2>}
-    </header>
+    <form className={style.todoEdit__form} onSubmit={handleEditSubmit} onBlur={handleEditSubmit}>
+      <input
+        type="text"
+        placeholder="введите название"
+        value={currentTodo.title}
+        onChange={handleEditTitleChange}
+      />
+    </form>
   );
 };
 
 const TodoBody: FC = () => {
-  const { currentTodo } = useData();
-  const [EditBody, setEditBody] = useState(false);
+  const { handleEditBodyChange, handleEditSubmit, currentTodo } = useData()!;
 
   if (!currentTodo) return null;
 
   return (
-    <div className={style.todoEdit__body}>
-      {EditBody && <textarea placeholder="body input" />}
-      {!EditBody && <p onClick={() => setEditBody(!EditBody)}>{currentTodo.body}</p>}
-    </div>
+    <form className={style.todoEdit__body} onSubmit={handleEditSubmit} onBlur={handleEditSubmit}>
+      <textarea
+        rows={20}
+        placeholder="а тут текст"
+        value={currentTodo.body}
+        onChange={handleEditBodyChange}
+      />
+    </form>
   );
 };
 
 const TodoEdit: FC = () => {
+  const { currentTodo } = useData()!;
+
+  if (!currentTodo) return null;
+
   return (
     <div className={style.todoEdit}>
+      <TodoStatus />
       <TodoHeader />
       <TodoBody />
     </div>
