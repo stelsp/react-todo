@@ -1,17 +1,24 @@
 @import '../../lib/sass/mixins.scss';
 
 .todoItem {
-  @include link;
-
+  @include flex($justify: start, $items: start, $gap: 5px, $dir: row);
+  padding-bottom: 5px;
   h2 {
+    @include flex($justify: start, $items: start, $gap: 0, $dir: column);
+
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    @include link;
+    &:hover {
+      border-bottom: 1px solid #000;
+    }
+  }
+  span {
+    @include link;
+    color: red;
+    font-size: 10px;
   }
 
   border-bottom: 1px solid transparent;
-
-  &:hover {
-    border-bottom: 1px solid #000;
-  }
 }

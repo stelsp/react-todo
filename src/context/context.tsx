@@ -1,36 +1,15 @@
-import React, { createContext, FC, useContext, useState } from 'react';
+import React, { createContext, FC, useContext } from 'react';
+import { IDataProvider } from './types';
+import useSavedTodos from './useSavedTodos';
 
-interface ITodo {
-  title: string;
-  body: string;
-  id: number;
-}
-interface IData {
-  todos?: ITodo[];
-  setTodos?: React.Dispatch<React.SetStateAction<ITodo[]>>;
-  addTodo?: () => void;
-  deleteTodo?: (id: number) => void;
-  currentTodo?: ITodo;
-  setCurrentTodo?: React.Dispatch<React.SetStateAction<ITodo>>;
-  setTodo?: (id: number) => void;
-}
-interface IDataProvider {
-  children: React.ReactNode;
-}
-
-const Data = createContext<IData>({});
+const Data = createContext<any>({});
 
 export const useData = () => {
   return useContext(Data);
 };
 
 const DataProvider: FC<IDataProvider> = ({ children }) => {
-  const [todos, setTodos] = useState<ITodo[]>([]);
-  const [currentTodo, setCurrentTodo] = useState<ITodo>();
-
-  const setTodo = (id: number) => {
-    setCurrentTodo(todos.find((el) => el.id === id));
-  };
+  const { todos, setTodos, currentTodo, setCurrentTodo } = useSavedTodos();
 
   const createTodo = () => {
     return {
@@ -39,25 +18,43 @@ const DataProvider: FC<IDataProvider> = ({ children }) => {
       id: Date.now()
     };
   };
-
-  const addTodo = () => {
+  const handleAddFormSubmit = (e: any) => {
+    e.preventDefault();
     setTodos([createTodo(), ...todos]);
-    // console.log(createTodo().id);
-    setTodo(createTodo().id);
   };
 
-  const deleteTodo = (id: number) => {
-    setTodos(todos.filter((el) => el.id !== id));
+  const handleDeleteClick = (id: number) => {
+    setTodos(todos.filter((el: any) => el.id !== id));
+  };
+
+  const handleSetCurrentTodo = (id: number) => {
+    setCurrentTodo(todos.find((el: any) => el.id === id));
+  };
+
+  const handleEditTitleChange = (e: any) => {
+    setCurrentTodo({ ...currentTodo, title: e.target.value });
+  };
+
+  const handleEditBodyChange = (e: any) => {
+    setCurrentTodo({ ...currentTodo, body: e.target.value });
+  };
+
+  const handleEditSubmit = (e: any) => {
+    e.preventDefault();
+    setTodos(todos.map((el: any) => (el.id === currentTodo?.id ? currentTodo : el)));
   };
 
   return (
     <Data.Provider
       value={{
         todos,
-        addTodo,
-        deleteTodo,
         currentTodo,
-        setTodo
+        handleAddFormSubmit,
+        handleDeleteClick,
+        handleSetCurrentTodo,
+        handleEditTitleChange,
+        handleEditBodyChange,
+        handleEditSubmit
       }}
     >
       {children}

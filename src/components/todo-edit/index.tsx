@@ -1,40 +1,44 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { useData } from '../../context/context';
 
 import style from './style.module.scss';
 
-const TodoHeader: FC = () => {
-  const { currentTodo } = useData();
-  const [state, setState] = useState('');
+const TodoStatus: FC = () => {
+  return (
+    <div>
+      <span>waiting</span>
+      <span>in process</span>
+      <span>dpne</span>
+    </div>
+  );
+};
 
-  if (!currentTodo) return null;
+const TodoHeader: FC = () => {
+  const { handleEditTitleChange, handleEditSubmit, currentTodo } = useData();
 
   return (
-    <header className={style.todoEdit__header}>
+    <form className={style.todoEdit__header} onSubmit={handleEditSubmit} onBlur={handleEditSubmit}>
       <input
         type="text"
         placeholder="введите название"
-        value={state}
-        onChange={(e) => setState(e.target.value)}
+        value={currentTodo.title}
+        onChange={handleEditTitleChange}
       />
-    </header>
+    </form>
   );
 };
 
 const TodoBody: FC = () => {
-  const { currentTodo } = useData();
-  const [state, setState] = useState('');
-
-  if (!currentTodo) return null;
+  const { handleEditBodyChange, handleEditSubmit, currentTodo } = useData();
 
   return (
-    <div className={style.todoEdit__body}>
+    <form className={style.todoEdit__body} onSubmit={handleEditSubmit} onBlur={handleEditSubmit}>
       <textarea
         placeholder="а тут текст"
-        value={state}
-        onChange={(e) => setState(e.target.value)}
+        value={currentTodo.body}
+        onChange={handleEditBodyChange}
       />
-    </div>
+    </form>
   );
 };
 

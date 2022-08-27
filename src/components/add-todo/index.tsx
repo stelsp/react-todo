@@ -4,21 +4,14 @@ import { useData } from '../../context/context';
 import style from './style.module.scss';
 
 const AddTodo: FC = () => {
-  const { addTodo } = useData();
-
-  if (!addTodo) return null;
+  const { handleAddFormSubmit } = useData();
 
   return (
-    <header className={style.addTodo__header}>
-      <button
-        className={style.addTodo__button}
-        onClick={() => {
-          addTodo();
-        }}
-      >
+    <form className={style.addTodo__header} onSubmit={handleAddFormSubmit}>
+      <button type="submit" className={style.addTodo__button}>
         new
       </button>
-    </header>
+    </form>
   );
 };
 
