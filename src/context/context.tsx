@@ -13,7 +13,7 @@ const DataProvider: FC<IDataProvider> = ({ children }) => {
   const [currentTodo, setCurrentTodo] = useState<ITodo | null>(null);
   const [filterInput, setFilterInput] = useState('');
 
-  const handleFilterInput = (e: any) => {
+  const handleFilterInput: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const lowerCase = e.target.value.toLowerCase();
     setFilterInput(lowerCase);
   };
