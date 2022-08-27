@@ -37,7 +37,7 @@ const TodoHeader: FC = () => {
       <input
         type="text"
         placeholder="введите название"
-        value={currentTodo.title}
+        value={currentTodo.title === 'new todo' ? '' : currentTodo.title}
         onChange={handleEditTitleChange}
       />
     </form>
