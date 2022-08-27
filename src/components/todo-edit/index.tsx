@@ -33,6 +33,8 @@ const TodoStatus: FC = () => {
 const TodoHeader: FC = () => {
   const { handleEditTitleChange, handleEditSubmit, currentTodo } = useData()!;
 
+  if (!currentTodo) return null;
+
   return (
     <form className={style.todoEdit__header} onSubmit={handleEditSubmit} onBlur={handleEditSubmit}>
       <input
@@ -47,6 +49,8 @@ const TodoHeader: FC = () => {
 
 const TodoBody: FC = () => {
   const { handleEditBodyChange, handleEditSubmit, currentTodo } = useData()!;
+
+  if (!currentTodo) return null;
 
   return (
     <form className={style.todoEdit__body} onSubmit={handleEditSubmit} onBlur={handleEditSubmit}>
@@ -65,7 +69,7 @@ const TodoEdit: FC = () => {
   if (!currentTodo)
     return (
       <div className={style.todoEdit}>
-        <p>ТЫКНИ НА ТУДУ</p>
+        <p className={style.todoEdit__header}>ТЫКНИ НА ТУДУ</p>
       </div>
     );
 

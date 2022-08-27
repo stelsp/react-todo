@@ -7,7 +7,7 @@ export interface ITodo {
 
 export interface IData {
   todos: ITodo[];
-  currentTodo: ITodo;
+  currentTodo: ITodo | null;
   handleSetCurrentTodo: (id: number) => void;
   handleAddFormSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   handleDeleteClick: (id: number) => void;

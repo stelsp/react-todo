@@ -1,4 +1,4 @@
-import React, { createContext, FC, FormEventHandler, useContext, useState } from 'react';
+import React, { createContext, FC, FormEventHandler, useContext, useEffect, useState } from 'react';
 import { IData, IDataProvider, ITodo } from './types';
 import useSavedTodosHook from './useSavedTodosHook';
 
@@ -10,7 +10,14 @@ export const useData = () => {
 
 const DataProvider: FC<IDataProvider> = ({ children }) => {
   const { todos, setTodos } = useSavedTodosHook();
-  const [currentTodo, setCurrentTodo] = useState<ITodo>(todos[0]);
+  const [currentTodo, setCurrentTodo] = useState<ITodo | null>(null);
+
+  useEffect(() => {
+    if (todos.length === 0) {
+      setCurrentTodo(null);
+    }
+    setCurrentTodo(todos[0]);
+  }, [todos]);
 
   const createTodo = () => {
     return {
@@ -36,20 +43,23 @@ const DataProvider: FC<IDataProvider> = ({ children }) => {
   };
 
   const handleEditTitleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    if (!currentTodo) return null;
     setCurrentTodo({ ...currentTodo, title: e.target.value });
   };
 
   const handleEditBodyChange: React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+    if (!currentTodo) return null;
     setCurrentTodo({ ...currentTodo, body: e.target.value });
+  };
+
+  const handleStatusChange = (status: string) => {
+    if (!currentTodo) return null;
+    setCurrentTodo({ ...currentTodo, status });
   };
 
   const handleEditSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     setTodos(todos.map((el) => (el.id === currentTodo?.id ? currentTodo : el)));
-  };
-
-  const handleStatusChange = (status: string) => {
-    setCurrentTodo({ ...currentTodo, status });
   };
 
   return (
