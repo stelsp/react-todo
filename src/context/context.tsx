@@ -1,4 +1,4 @@
-import React, { createContext, FC, FormEventHandler, useContext, useEffect, useState } from 'react';
+import React, { createContext, FC, useContext, useEffect, useState } from 'react';
 import { IData, IDataProvider, ITodo } from './types';
 import useSavedTodosHook from './useSavedTodosHook';
 
@@ -11,6 +11,12 @@ export const useData = () => {
 const DataProvider: FC<IDataProvider> = ({ children }) => {
   const { todos, setTodos } = useSavedTodosHook();
   const [currentTodo, setCurrentTodo] = useState<ITodo | null>(null);
+  const [filterInput, setFilterInput] = useState('');
+
+  const handleFilterInput = (e: any) => {
+    const lowerCase = e.target.value.toLowerCase();
+    setFilterInput(lowerCase);
+  };
 
   useEffect(() => {
     if (todos.length === 0) {
@@ -23,15 +29,17 @@ const DataProvider: FC<IDataProvider> = ({ children }) => {
 
   const createTodo = () => {
     return {
-      title: '',
+      title: 'new todo',
       body: '',
       id: Date.now(),
       status: 'waiting'
     };
   };
-  const handleAddFormSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+
+  const handleAddFormSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     setTodos([createTodo(), ...todos]);
+    setFilterInput('');
   };
 
   const handleDeleteClick = (id: number) => {
@@ -60,7 +68,7 @@ const DataProvider: FC<IDataProvider> = ({ children }) => {
     setCurrentTodo({ ...currentTodo, status });
   };
 
-  const handleEditSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+  const handleEditSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     setTodos(todos.map((el) => (el.id === currentTodo?.id ? currentTodo : el)));
   };
@@ -76,7 +84,9 @@ const DataProvider: FC<IDataProvider> = ({ children }) => {
         handleEditTitleChange,
         handleEditBodyChange,
         handleEditSubmit,
-        handleStatusChange
+        handleStatusChange,
+        filterInput,
+        handleFilterInput
       }}
     >
       {children}

@@ -48,7 +48,7 @@ const TodoItem: FC<ITodoItem> = ({ el }) => {
               : style.todoItem_waiting
           }
         >
-          {el.title === '' ? 'new todo' : el.title}
+          {el.title === '' ? 'введите название' : el.title}
 
           <p>{el.body}</p>
         </h3>

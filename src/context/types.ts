@@ -15,6 +15,8 @@ export interface IData {
   handleEditBodyChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   handleEditSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   handleStatusChange: (status: string) => void;
+  filterInput: string;
+  handleFilterInput: (e: any) => void;
 }
 
 export interface IDataProvider {

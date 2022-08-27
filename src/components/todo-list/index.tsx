@@ -5,14 +5,30 @@ import TodoItem from '../todo-item';
 import style from './style.module.scss';
 
 const TodoList: FC = () => {
-  const { todos } = useData()!;
+  const { todos, filterInput, handleFilterInput } = useData()!;
+
+  const filteredData = todos.filter((el) => {
+    if (filterInput === '') {
+      return el;
+    } else {
+      return el.title.toLowerCase().includes(filterInput);
+    }
+  });
 
   return (
-    <ul className={style.todoList}>
-      {todos.map((el) => (
-        <TodoItem el={el} key={el.id} />
-      ))}
-    </ul>
+    <>
+      <input
+        type="search"
+        value={filterInput}
+        onChange={handleFilterInput}
+        placeholder="search..."
+      />
+      <ul className={style.todoList}>
+        {filteredData.map((el) => (
+          <TodoItem el={el} key={el.id} />
+        ))}
+      </ul>
+    </>
   );
 };
 
