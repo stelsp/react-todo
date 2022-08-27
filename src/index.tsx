@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './components/app';
+import App from './layout/app';
 import DataProvider from './context/context';
 
 import './lib/sass/global.scss';

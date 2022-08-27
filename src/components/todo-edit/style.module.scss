@@ -2,41 +2,40 @@
 
 .todoEdit {
   flex-grow: 1;
+  @include flex($justify: center, $items: flex-start, $gap: 0.5rem, $dir: column);
 
   &__status {
-    @include flex($justify: center, $items: center, $gap: 10px, $dir: row);
-  }
+    @include flex($justify: center, $items: center, $gap: 0, $dir: column);
 
-  &__statusButton {
-    &_type {
-      &_waiting {
-        @include button;
-        font-size: 10px;
-      }
-      &_inProcess {
-        @include button;
-        font-size: 10px;
-        background-color: #364fc7;
-      }
-      &_done {
-        @include button;
-        font-size: 10px;
-        background-color: #5c940d;
-      }
+    @include for-tablet-up {
+      @include flex($justify: center, $items: center, $gap: 1rem, $dir: row);
+    }
+    font-size: var(--fs-300);
+    width: 100%;
+
+    &_waiting {
+      @include button($bg: #000000);
+      width: 100%;
+    }
+    &_inprocess {
+      @include button($bg: #364fc7);
+      width: 100%;
+    }
+    &_done {
+      @include button($bg: #5c940d);
+      width: 100%;
     }
   }
 
-  &__header {
+  &__form {
     @include flex($justify: space-between);
     min-height: 2rem;
-    border-bottom: 1px solid black;
-    margin-bottom: 0.5rem;
+    width: 100%;
 
     input {
       border: none;
       outline: none;
-      padding: 2px;
-      border: 1px dashed #000;
+      font-size: var(--fs-500);
       width: 100%;
 
       white-space: nowrap;
@@ -47,14 +46,14 @@
 
   &__body {
     @include flex($justify: space-between);
+    width: 100%;
 
     textarea {
+      border: none;
       outline: none;
-      resize: vertical;
-      padding: 2px;
-      border: 1px dashed #000;
+      resize: none;
+      font-size: var(--fs-400);
       width: 100%;
-      min-height: 100vmin;
     }
   }
 }

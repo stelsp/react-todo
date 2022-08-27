@@ -9,21 +9,18 @@ const TodoStatus: FC = () => {
   return (
     <form className={style.todoEdit__status} onSubmit={handleEditSubmit} onBlur={handleEditSubmit}>
       <button
-        className={style.todoEdit__statusButton_type_waiting}
+        className={style.todoEdit__status_waiting}
         onClick={() => handleStatusChange('waiting')}
       >
         waiting
       </button>
       <button
-        className={style.todoEdit__statusButton_type_inProcess}
+        className={style.todoEdit__status_inprocess}
         onClick={() => handleStatusChange('inprocess')}
       >
-        in process
+        process
       </button>
-      <button
-        className={style.todoEdit__statusButton_type_done}
-        onClick={() => handleStatusChange('done')}
-      >
+      <button className={style.todoEdit__status_done} onClick={() => handleStatusChange('done')}>
         done
       </button>
     </form>
@@ -36,7 +33,7 @@ const TodoHeader: FC = () => {
   if (!currentTodo) return null;
 
   return (
-    <form className={style.todoEdit__header} onSubmit={handleEditSubmit} onBlur={handleEditSubmit}>
+    <form className={style.todoEdit__form} onSubmit={handleEditSubmit} onBlur={handleEditSubmit}>
       <input
         type="text"
         placeholder="введите название"
@@ -55,6 +52,7 @@ const TodoBody: FC = () => {
   return (
     <form className={style.todoEdit__body} onSubmit={handleEditSubmit} onBlur={handleEditSubmit}>
       <textarea
+        rows={20}
         placeholder="а тут текст"
         value={currentTodo.body}
         onChange={handleEditBodyChange}
@@ -69,7 +67,7 @@ const TodoEdit: FC = () => {
   if (!currentTodo)
     return (
       <div className={style.todoEdit}>
-        <p className={style.todoEdit__header}>ТЫКНИ НА ТУДУ</p>
+        <p className={style.todoEdit__form}>ТЫКНИ НА ТУДУ</p>
       </div>
     );
 

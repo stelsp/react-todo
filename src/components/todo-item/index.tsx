@@ -14,22 +14,22 @@ const TodoItem: FC<ITodoItem> = ({ el }) => {
   if (!currentTodo)
     return (
       <li className={style.todoItem}>
-        <span onClick={() => handleDeleteClick(el.id)}>X</span>
-        <h2
-          onClick={() => handleSetCurrentTodo(el.id)}
-          style={
-            el.status === 'waiting'
-              ? { color: 'black' }
-              : el.status === 'inprocess'
-              ? { color: '#364fc7' }
-              : el.status === 'done'
-              ? { color: '#5c940d' }
-              : { color: 'black' }
-          }
-        >
-          {el.title}
-          <span>{el.body}</span>
-        </h2>
+        <button onClick={() => handleDeleteClick(el.id)}>x</button>
+        <div className={style.todoItem__text}>
+          <h3
+            onClick={() => handleSetCurrentTodo(el.id)}
+            className={
+              el.status === 'inprocess'
+                ? style.todoItem_inprocess
+                : el.status === 'done'
+                ? style.todoItem_done
+                : style.todoItem_waiting
+            }
+          >
+            {el.title}
+            <p>{el.body}</p>
+          </h3>
+        </div>
       </li>
     );
 
@@ -38,22 +38,22 @@ const TodoItem: FC<ITodoItem> = ({ el }) => {
       className={style.todoItem}
       style={currentTodo.id === el.id ? { opacity: '0.5' } : { backgroundColor: '' }}
     >
-      <span onClick={() => handleDeleteClick(el.id)}>X</span>
-      <h2
-        onClick={() => handleSetCurrentTodo(el.id)}
-        style={
-          el.status === 'waiting'
-            ? { color: 'black' }
-            : el.status === 'inprocess'
-            ? { color: '#364fc7' }
-            : el.status === 'done'
-            ? { color: '#5c940d' }
-            : { color: 'black' }
-        }
-      >
-        {el.title}
-        <span>{el.body}</span>
-      </h2>
+      <button onClick={() => handleDeleteClick(el.id)}>x</button>
+      <div className={style.todoItem__text}>
+        <h3
+          onClick={() => handleSetCurrentTodo(el.id)}
+          className={
+            el.status === 'inprocess'
+              ? style.todoItem_inprocess
+              : el.status === 'done'
+              ? style.todoItem_done
+              : style.todoItem_waiting
+          }
+        >
+          {el.title}
+          <p>{el.body}</p>
+        </h3>
+      </div>
     </li>
   );
 };

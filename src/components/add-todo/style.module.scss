@@ -1,19 +1,12 @@
 @import '../../lib/sass/mixins.scss';
 
 .addTodo {
-  resize: horizontal;
-  padding: 0.5rem;
-  border-right: 1px solid black;
-  overflow: hidden;
-
-  &__header {
-    min-height: 2rem;
-    border-bottom: 1px solid black;
-    margin-bottom: 0.5rem;
-  }
+  font-size: var(--fs-300);
 
   &__button {
-    @include button($br: 4px, $px: 0, $py: 0.5em, $clr: #fff, $bg: #000);
+    display: block;
+    @include button();
     width: 100%;
+    margin: 0 auto;
   }
 }

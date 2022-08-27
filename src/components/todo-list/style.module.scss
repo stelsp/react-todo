@@ -1,1 +1,5 @@
+@import '../../lib/sass/mixins.scss';
 
+.todoList {
+  @include flex($gap: 0.5rem, $dir: column);
+}

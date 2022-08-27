@@ -1,7 +1,10 @@
+@import '../../lib/sass/mixins.scss';
 .aside {
+  @include flex($gap: 1rem, $dir: column);
+
   resize: horizontal;
   overflow: hidden;
   padding: 0.5rem;
-  min-width: 4.5rem;
+  min-width: 3rem;
   border-right: 1px solid black;
 }

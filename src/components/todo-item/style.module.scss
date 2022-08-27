@@ -1,20 +1,41 @@
 @import '../../lib/sass/mixins.scss';
 
 .todoItem {
-  @include flex($justify: start, $items: start, $gap: 5px, $dir: row);
-  padding-bottom: 5px;
-  h2 {
-    @include flex($justify: start, $items: start, $gap: 0, $dir: column);
+  @include flex($items: center, $gap: 0.5rem);
 
-    white-space: nowrap;
+  &:hover {
+    border-bottom: 1px solid black;
+  }
+
+  &__text {
+    @include flex($gap: 0.5rem, $dir: column);
+    @include link;
+
+    font-size: var(--fs-400);
     overflow: hidden;
-    text-overflow: ellipsis;
-    // @include link;
-  }
-  span {
-    // @include link;
-    font-size: 10px;
+
+    h3 {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    p {
+      font-size: var(--fs-300);
+      padding-left: 10px;
+      max-width: 30ch;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
-  border-bottom: 1px solid transparent;
+  &_waiting {
+    color: #000000;
+  }
+  &_inprocess {
+    color: #364fc7;
+  }
+  &_done {
+    color: #5c940d;
+  }
 }

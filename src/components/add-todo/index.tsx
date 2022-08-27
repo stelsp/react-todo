@@ -7,7 +7,7 @@ const AddTodo: FC = () => {
   const { handleAddFormSubmit } = useData()!;
 
   return (
-    <form className={style.addTodo__header} onSubmit={handleAddFormSubmit}>
+    <form className={style.addTodo} onSubmit={handleAddFormSubmit}>
       <button type="submit" className={style.addTodo__button}>
         new
       </button>

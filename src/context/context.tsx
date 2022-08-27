@@ -16,7 +16,6 @@ const DataProvider: FC<IDataProvider> = ({ children }) => {
     if (todos.length === 0) {
       setCurrentTodo(null);
     }
-    setCurrentTodo(todos[0]);
   }, [todos]);
 
   const createTodo = () => {
