@@ -4,6 +4,13 @@
   @include flex($items: center, $gap: 1rem);
   width: 100%;
 
+  button {
+    border: none;
+    background: none;
+    @include link;
+    font-size: 20px;
+  }
+
   &:hover {
     border-bottom: 1px solid black;
   }

@@ -14,7 +14,7 @@ const TodoItem: FC<ITodoItem> = ({ el }) => {
   if (!currentTodo)
     return (
       <li className={style.todoItem}>
-        <button onClick={() => handleDeleteClick(el.id)}>x</button>
+        <button onClick={() => handleDeleteClick(el.id)}>&#9746;</button>
         <div className={style.todoItem__text} onClick={() => handleSetCurrentTodo(el.id)}>
           <h3
             className={
@@ -37,7 +37,7 @@ const TodoItem: FC<ITodoItem> = ({ el }) => {
       className={style.todoItem}
       style={currentTodo.id === el.id ? { opacity: '0.5', borderBottom: '1px solid black' } : {}}
     >
-      <button onClick={() => handleDeleteClick(el.id)}>x</button>
+      <button onClick={() => handleDeleteClick(el.id)}>&#9746;</button>
       <div className={style.todoItem__text} onClick={() => handleSetCurrentTodo(el.id)}>
         <h3
           className={
