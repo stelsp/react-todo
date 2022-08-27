@@ -64,12 +64,7 @@ const TodoBody: FC = () => {
 const TodoEdit: FC = () => {
   const { currentTodo } = useData()!;
 
-  if (!currentTodo)
-    return (
-      <div className={style.todoEdit}>
-        <p className={style.todoEdit__form}>ТЫКНИ НА ТУДУ</p>
-      </div>
-    );
+  if (!currentTodo) return null;
 
   return (
     <div className={style.todoEdit}>

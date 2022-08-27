@@ -15,9 +15,8 @@ const TodoItem: FC<ITodoItem> = ({ el }) => {
     return (
       <li className={style.todoItem}>
         <button onClick={() => handleDeleteClick(el.id)}>x</button>
-        <div className={style.todoItem__text}>
+        <div className={style.todoItem__text} onClick={() => handleSetCurrentTodo(el.id)}>
           <h3
-            onClick={() => handleSetCurrentTodo(el.id)}
             className={
               el.status === 'inprocess'
                 ? style.todoItem_inprocess
@@ -26,7 +25,7 @@ const TodoItem: FC<ITodoItem> = ({ el }) => {
                 : style.todoItem_waiting
             }
           >
-            {el.title}
+            {el.title === '' ? 'new todo' : el.title}
             <p>{el.body}</p>
           </h3>
         </div>
@@ -36,12 +35,11 @@ const TodoItem: FC<ITodoItem> = ({ el }) => {
   return (
     <li
       className={style.todoItem}
-      style={currentTodo.id === el.id ? { opacity: '0.5' } : { backgroundColor: '' }}
+      style={currentTodo.id === el.id ? { opacity: '0.5', borderBottom: '1px solid black' } : {}}
     >
       <button onClick={() => handleDeleteClick(el.id)}>x</button>
-      <div className={style.todoItem__text}>
+      <div className={style.todoItem__text} onClick={() => handleSetCurrentTodo(el.id)}>
         <h3
-          onClick={() => handleSetCurrentTodo(el.id)}
           className={
             el.status === 'inprocess'
               ? style.todoItem_inprocess
@@ -50,7 +48,8 @@ const TodoItem: FC<ITodoItem> = ({ el }) => {
               : style.todoItem_waiting
           }
         >
-          {el.title}
+          {el.title === '' ? 'new todo' : el.title}
+
           <p>{el.body}</p>
         </h3>
       </div>

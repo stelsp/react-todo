@@ -2,6 +2,7 @@
 
 .todoItem {
   @include flex($items: center, $gap: 0.5rem);
+  width: 100%;
 
   &:hover {
     border-bottom: 1px solid black;
@@ -10,6 +11,7 @@
   &__text {
     @include flex($gap: 0.5rem, $dir: column);
     @include link;
+    width: 100%;
 
     font-size: var(--fs-400);
     overflow: hidden;

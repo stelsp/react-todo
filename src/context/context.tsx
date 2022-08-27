@@ -16,11 +16,14 @@ const DataProvider: FC<IDataProvider> = ({ children }) => {
     if (todos.length === 0) {
       setCurrentTodo(null);
     }
+    if (todos.length === 1) {
+      setCurrentTodo(todos[0]);
+    }
   }, [todos]);
 
   const createTodo = () => {
     return {
-      title: 'new todo',
+      title: '',
       body: '',
       id: Date.now(),
       status: 'waiting'
@@ -33,6 +36,7 @@ const DataProvider: FC<IDataProvider> = ({ children }) => {
 
   const handleDeleteClick = (id: number) => {
     setTodos(todos.filter((el) => el.id !== id));
+    setCurrentTodo(todos[-1]);
   };
 
   const handleSetCurrentTodo = (id: number) => {
